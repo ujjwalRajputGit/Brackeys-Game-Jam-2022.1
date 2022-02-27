@@ -8,15 +8,11 @@ public class GlitchObjects : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Collider glitchcollider;
-
-    private void Awake()
-    {
-        EventManager.instance.onMakeGlitchSolid += GetSolid;
-        EventManager.instance.onMakeGlitchTransparent += GetTransparent;
-    }
     void Start()
     {
         glitchcollider = this.GetComponent<Collider>();
+        EventManager.instance.onMakeGlitchSolid += GetSolid;
+        EventManager.instance.onMakeGlitchTransparent += GetTransparent;
         GetTransparent();
     }
 
