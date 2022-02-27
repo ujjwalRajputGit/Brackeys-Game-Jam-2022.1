@@ -8,11 +8,15 @@ public class GlitchObjects : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Collider glitchcollider;
+    private EventManager eventManager;
 
     private void Awake()
     {
-        EventManager.instance.onMakeGlitchSolid += GetSolid;
-        EventManager.instance.onMakeGlitchTransparent += GetTransparent;
+        eventManager = FindObjectOfType<EventManager>().GetComponent<EventManager>();
+       // EventManager.instance.onMakeGlitchSolid += GetSolid;
+       // EventManager.instance.onMakeGlitchTransparent += GetTransparent;
+       eventManager.onMakeGlitchSolid += GetSolid;
+        eventManager.onMakeGlitchTransparent += GetTransparent;
     }
     void Start()
     {
@@ -40,7 +44,9 @@ public class GlitchObjects : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.instance.onMakeGlitchSolid -= GetSolid;
-        EventManager.instance.onMakeGlitchTransparent -= GetTransparent;
+        // EventManager.instance.onMakeGlitchSolid -= GetSolid;
+        //EventManager.instance.onMakeGlitchTransparent -= GetTransparent;
+        eventManager.onMakeGlitchSolid -= GetSolid;
+        eventManager.onMakeGlitchTransparent -= GetTransparent;
     }
 }
